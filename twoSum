@@ -1,3 +1,4 @@
+// Better in O(nlogn)
 class Solution {
     public int[] twoSum(int[] nums, int target) {
     Map<Integer,Integer> map=new HashMap<>();
@@ -10,5 +11,21 @@ class Solution {
         map.put(nums[i],i);
     }
     return new int[] {-1,-1};
+    }
+}
+
+// Brute in O(n^2)
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int n=nums.length;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(nums[i]+nums[j]==target){
+                    return new int[] {i,j};
+                }
+            }
+        }
+        return new int[] {};
     }
 }
