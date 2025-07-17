@@ -1,0 +1,35 @@
+class Solution {
+    public int hammingWeight(int n) {
+        // 1-Method
+    //   int cnt=0;
+    //   while(n!=0){
+    //     n=(n&(n-1));
+    //     cnt++;
+    //   }  
+    //   return cnt;
+
+      // 2-Method
+    //   int cnt=0;
+    //   for(int i=31;i>=0;i--){
+    //     if(((n>>i)&1) == 1){
+    //         cnt++;
+    //     }
+    //   }
+    //   return cnt;
+
+    // 3-Method=> builtIn
+    // return Integer.bitCount(n);
+    // 4-Method -> Convert to Binary
+
+        String binaryString = Integer.toBinaryString(n);
+        int count = 0;
+        for (char c : binaryString.toCharArray()) {
+            if (c == '1') {
+                count++;
+            }
+        }
+        return count;
+
+
+    }
+}
