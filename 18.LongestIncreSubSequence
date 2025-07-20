@@ -1,0 +1,49 @@
+class Solution 
+{
+     int[][] dp;
+    int n;
+
+    int solve(int[] nums, int i, int p) {
+        if (i >= n) return 0;
+
+        if (dp[i][p + 1] != -1)  // shift p by +1 to handle -1 index
+            return dp[i][p + 1];
+
+        int take = 0;
+        if (p == -1 || nums[i] > nums[p]) {
+            take = 1 + solve(nums, i + 1, i);
+        }
+
+        int skip = solve(nums, i + 1, p);
+
+        dp[i][p + 1] = Math.max(take, skip);
+        return dp[i][p + 1];
+    }
+
+    public int lengthOfLIS(int[] nums) {
+        n = nums.length;
+        dp = new int[n][n + 1]; // use (p + 1) for shifting -1 to 0
+        for (int[] row : dp) Arrays.fill(row, -1);
+
+        return solve(nums, 0, -1);
+        // int t[]=new int[n.length];
+        // int s=0;
+        // for(int x:n)
+        // {
+        //     int i=0,j=s;
+        //     while(i!=j)
+        //     {
+        //         int m=(i+j)/2;
+        //         if(t[m]<x)
+        //         i=m+1;
+        //         else
+        //         j=m;
+        //     }
+        //     t[i]=x;
+        //     if(i==s)
+        //     s++;
+        // }
+        // return s;
+          
+    }
+}
